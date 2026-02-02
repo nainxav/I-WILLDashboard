@@ -3,9 +3,12 @@ import RiveBackground from "@/components/RiveBackground";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-950 to-black text-white relative overflow-hidden">
+    <main className="min-h-screen text-white relative overflow-hidden">
+      {/* Rive Background - z-index 0 */}
       <RiveBackground />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/20 pointer-events-none -z-10" />
+      
+      {/* Content overlay - z-index 10 */}
+      <div className="relative" style={{ zIndex: 10 }}>
       {/* Navigation */}
       <header className="w-full py-6 px-8 flex items-center justify-between">
         <h1 className="text-xl font-bold">I-WILL Laboratory</h1>
@@ -86,6 +89,7 @@ export default function Home() {
       <footer className="py-8 px-6 border-t border-gray-800 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} I-WILL Laboratory — Built with ❤️ by the team
       </footer>
+      </div>
     </main>
   );
 }

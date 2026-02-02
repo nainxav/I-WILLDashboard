@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Layout, Fit, Alignment, useRive } from "@rive-app/react-canvas";
 
 interface Props {
@@ -8,7 +7,7 @@ interface Props {
 }
 
 export default function RiveBackground({ className = "" }: Props) {
-  const { RiveComponent, rive } = useRive({
+  const { RiveComponent } = useRive({
     src: "/circuits_parallax_background.riv",
     artboard: "Scene_1",
     stateMachines: "State Machine 1",
@@ -19,25 +18,13 @@ export default function RiveBackground({ className = "" }: Props) {
     }),
   });
 
-  useEffect(() => {
-    console.log("RiveBackground mounted: RiveComponent?", Boolean(RiveComponent));
-    console.log("rive object:", rive);
-    // Try to call play if available on the runtime wrapper
-    if (rive && typeof (rive as any).play === "function") {
-      try {
-        (rive as any).play();
-        console.log("rive.play() called");
-      } catch (e) {
-        console.warn("rive.play() failed", e);
-      }
-    }
-  }, [RiveComponent, rive]);
-
   return (
-    <div className={`absolute inset-0 -z-20 ${className}`} data-testid="rive-background">
-      <div className="w-full h-full pointer-events-none select-none">
-        <RiveComponent className="w-full h-full" />
-      </div>
+    <div 
+      className={`fixed inset-0 w-full h-full ${className}`} 
+      style={{ zIndex: 0 }}
+      data-testid="rive-background"
+    >
+      <RiveComponent className="w-full h-full" />
     </div>
   );
 }
