@@ -1,8 +1,11 @@
 import Link from "next/link";
+import RiveBackground from "@/components/RiveBackground";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-950 to-black text-white">
+    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-950 to-black text-white relative overflow-hidden">
+      <RiveBackground />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/20 pointer-events-none -z-10" />
       {/* Navigation */}
       <header className="w-full py-6 px-8 flex items-center justify-between">
         <h1 className="text-xl font-bold">I-WILL Laboratory</h1>
@@ -14,19 +17,9 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hero */}
-      <section className="min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-4xl text-center">
-          <h2 className="text-4xl md:text-6xl font-extrabold mb-6">I-WILL Laboratory</h2>
-          <p className="text-lg md:text-xl text-gray-300 mb-8">Innovating at the intersection of immersive interaction, robotics, and human-centered design. We research, prototype, and deploy creative technology solutions to real-world problems.</p>
-
-          <div className="flex flex-col sm:flex-row items-center gap-4 justify-center">
-            <Link href="/arc-01" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-md font-semibold">Explore ARC-01</Link>
-            <a href="#about" className="text-gray-300 hover:underline">Learn more</a>
-          </div>
-
-          <div className="mt-12 text-sm text-gray-400">Tip: Click "Explore ARC-01" to open the interactive dashboard for the ARC-01 project.</div>
-        </div>
+      {/* Hero - show only the parallax background */}
+      <section className="min-h-screen flex items-center justify-center px-0" aria-hidden>
+        <div className="w-full h-full" />
       </section>
 
       {/* About Section */}
