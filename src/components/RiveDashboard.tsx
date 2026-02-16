@@ -7,7 +7,7 @@ interface RiveDashboardProps {
   className?: string;
 }
 
-type ViewType = "dashboard" | "choose_hero" | "journey";
+type ViewType = "select_team" | "choose_hero" | "journey";
 
 // Character mapping (Rive name -> Display name)
 const CHARACTER_MAP: Record<string, string> = {
@@ -32,30 +32,40 @@ const CHARACTER_THEMES: Record<string, { gradient: string; accent: string }> = {
   },
 };
 
-// Card positions as percentage of canvas width (left to right)
-// Adjust these values to match your card positions
-const CARD_ZONES = [
-  { name: "AngklungineX", minX: 0, maxX: 0.25 },
-  { name: "Drone", minX: 0.25, maxX: 0.50 },
-  { name: "R.O.V.E.R", minX: 0.50, maxX: 0.75 },
-  { name: "S.A.R.A.H CITRA", minX: 0.75, maxX: 1.0 },
+// Team positions - 10 teams arranged in a grid (5 columns x 2 rows)
+// Adjust these values to match your select_team.riv layout
+// Row 1 (top): AngklungineX, Drone, R.O.V.E.R, SmartTrain, NetraDUMP
+// Row 2 (bottom): Donimal, Skysense, Carrymate, Vending Machine, S.A.R.A.H
+const TEAM_ZONES = [
+  // Row 1 (top row, y: 0.15 - 0.45)
+  { name: "AngklungineX", minX: 0, maxX: 0.2, minY: 0.15, maxY: 0.45 },
+  { name: "Drone", minX: 0.2, maxX: 0.4, minY: 0.15, maxY: 0.45 },
+  { name: "R.O.V.E.R", minX: 0.4, maxX: 0.6, minY: 0.15, maxY: 0.45 },
+  { name: "SmartTrain", minX: 0.6, maxX: 0.8, minY: 0.15, maxY: 0.45 },
+  { name: "NetraDUMP", minX: 0.8, maxX: 1.0, minY: 0.15, maxY: 0.45 },
+  // Row 2 (bottom row, y: 0.50 - 0.80)
+  { name: "Donimal", minX: 0, maxX: 0.2, minY: 0.50, maxY: 0.80 },
+  { name: "Skysense", minX: 0.2, maxX: 0.4, minY: 0.50, maxY: 0.80 },
+  { name: "Carrymate", minX: 0.4, maxX: 0.6, minY: 0.50, maxY: 0.80 },
+  { name: "Vending Machine", minX: 0.6, maxX: 0.8, minY: 0.50, maxY: 0.80 },
+  { name: "S.A.R.A.H", minX: 0.8, maxX: 1.0, minY: 0.50, maxY: 0.80 },
 ];
 
-// Dashboard View Component
-function DashboardView({ 
-  onCardClick,
+// Team Select View Component
+function TeamSelectView({ 
+  onTeamClick,
 }: { 
-  onCardClick: (card: string) => void;
+  onTeamClick: (team: string) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const onCardClickRef = useRef(onCardClick);
+  const onTeamClickRef = useRef(onTeamClick);
   
   useEffect(() => {
-    onCardClickRef.current = onCardClick;
+    onTeamClickRef.current = onTeamClick;
   });
 
-  const { RiveComponent, rive } = useRive({
-    src: "/dashboard.riv",
+  const { RiveComponent } = useRive({
+    src: "/select_team.riv",
     stateMachines: "State Machine 1",
     autoplay: true,
     layout: new Layout({
@@ -64,7 +74,7 @@ function DashboardView({
     }),
   });
 
-  // Handle click on the container to detect which card was clicked
+  // Handle click on the container to detect which team was clicked
   const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     
@@ -72,18 +82,16 @@ function DashboardView({
     const x = (e.clientX - rect.left) / rect.width; // 0 to 1
     const y = (e.clientY - rect.top) / rect.height; // 0 to 1
     
-    // Only detect clicks in the card area (roughly middle of screen)
-    // Adjust these Y values based on where your cards are vertically
-    if (y < 0.2 || y > 0.85) return; // Ignore clicks outside card area
+    console.log(`Team select click at x=${x.toFixed(2)}, y=${y.toFixed(2)}`);
     
-    // Find which card zone was clicked
-    for (const zone of CARD_ZONES) {
-      if (x >= zone.minX && x < zone.maxX) {
-        console.log(`Clicked ${zone.name} at x=${x.toFixed(2)}, y=${y.toFixed(2)}`);
+    // Find which team zone was clicked
+    for (const zone of TEAM_ZONES) {
+      if (x >= zone.minX && x < zone.maxX && y >= zone.minY && y < zone.maxY) {
+        console.log(`Clicked team: ${zone.name}`);
         
         // Small delay to let Rive animation start first
         setTimeout(() => {
-          onCardClickRef.current(zone.name);
+          onTeamClickRef.current(zone.name);
         }, 100);
         break;
       }
@@ -239,25 +247,27 @@ function JourneyView({
 }
 
 export default function RiveDashboard({ className = "" }: RiveDashboardProps) {
-  const [currentView, setCurrentView] = useState<ViewType>("dashboard");
-  const [clickedCard, setClickedCard] = useState<string | null>(null);
+  const [currentView, setCurrentView] = useState<ViewType>("select_team");
+  const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
 
-  const handleCardClick = (card: string) => {
-    console.log("Card clicked:", card);
-    setClickedCard(card);
+  const handleTeamClick = (team: string) => {
+    console.log("Team clicked:", team);
+    setSelectedTeam(team);
 
     // Navigate to Choose Hero when Drone is clicked
-    if (card.toLowerCase().includes("drone")) {
+    if (team.toLowerCase() === "drone") {
       setTimeout(() => {
         setCurrentView("choose_hero");
       }, 500);
     }
+    // Add more team-specific navigation here as needed
+    // For now, other teams just show as selected
   };
 
-  const handleBackToDashboard = () => {
-    setCurrentView("dashboard");
-    setClickedCard(null);
+  const handleBackToTeamSelect = () => {
+    setCurrentView("select_team");
+    setSelectedTeam(null);
     setSelectedCharacter(null);
   };
 
@@ -274,12 +284,12 @@ export default function RiveDashboard({ className = "" }: RiveDashboardProps) {
 
   return (
     <div className={`w-full h-full relative ${className}`}>
-      {currentView === "dashboard" && (
-        <DashboardView onCardClick={handleCardClick} />
+      {currentView === "select_team" && (
+        <TeamSelectView onTeamClick={handleTeamClick} />
       )}
       {currentView === "choose_hero" && (
         <ChooseHeroView 
-          onBack={handleBackToDashboard} 
+          onBack={handleBackToTeamSelect} 
           onStartJourney={handleStartJourney}
         />
       )}
@@ -290,9 +300,9 @@ export default function RiveDashboard({ className = "" }: RiveDashboardProps) {
         />
       )}
 
-      {clickedCard && currentView === "dashboard" && (
+      {selectedTeam && currentView === "select_team" && (
         <div className="absolute top-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg z-50">
-          Clicked: <span className="font-bold text-green-400">{clickedCard}</span>
+          Selected Team: <span className="font-bold text-green-400">{selectedTeam}</span>
         </div>
       )}
     </div>
