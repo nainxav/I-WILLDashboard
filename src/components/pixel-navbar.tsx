@@ -7,6 +7,7 @@ import { ModeToggle } from "@/components/theme-toggle";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { House, BookOpen, Gamepad2, Cpu, Trophy, Radio, Pause, Play } from "lucide-react";
+import Image from "next/image";
 
 const navItems = [
   { name: "BASE", href: "/", label: "Base Operations", icon: House, desc: "Return to HQ" },
@@ -17,31 +18,58 @@ const navItems = [
   { name: "TRANSMISSION", href: "/transmission", label: "Transmission", icon: Radio, desc: "Comms Link" },
 ];
 
+import { useTheme } from "next-themes";
+
 export function PixelNavbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   // Close menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <>
-        {/* Toggle Button (Always Visible) */}
-        <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        {/* Standard Header Layout */}
+        <header className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-background/80 backdrop-blur-md border-b-4 border-black dark:border-white">
+            {/* Left: Logo */}
+            <Link href="/" className="flex items-center gap-3 group">
+                <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform group-hover:scale-110">
+                    {mounted && (
+                        <Image 
+                            src={resolvedTheme === "dark" ? "/images/logo-darkMode.png" : "/images/logo-lightMode.png"} 
+                            alt="I-WILL Logo" 
+                            fill
+                            className="object-contain"
+                        />
+                    )}
+                </div>
+                <div className="hidden md:block">
+                    <h1 className="font-pixel text-lg tracking-tight leading-none">I-WILL</h1>
+                    <p className="font-mono text-[10px] opacity-70 leading-none">LABORATORY</p>
+                </div>
+            </Link>
+
+            {/* Right: Pause Game Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={clsx(
-                    "bg-background/90 backdrop-blur-md border-4 border-black dark:border-white shadow-pixel px-6 py-2 flex items-center gap-3 transition-colors",
-                    isOpen ? "bg-primary text-primary-foreground border-primary" : "hover:bg-accent"
+                    "border-4 border-black dark:border-white shadow-pixel px-4 py-2 flex items-center gap-2 transition-colors",
+                    isOpen ? "bg-primary text-primary-foreground border-primary" : "bg-background hover:bg-accent"
                 )}
             >
-                {isOpen ? <Play size={20} fill="currentColor" /> : <Pause size={20} fill="currentColor" />}
-                <span className="font-pixel text-xs md:text-sm tracking-widest">
-                    {isOpen ? "Menu" : "Menu"}
+                {isOpen ? <Play size={18} fill="currentColor" /> : <Pause size={18} fill="currentColor" />}
+                <span className="font-pixel text-xs tracking-widest hidden sm:inline-block">
+                    {isOpen ? "CLOSE MENU" : "OPEN MENU"}
                 </span>
             </motion.button>
         </header>
@@ -70,7 +98,7 @@ export function PixelNavbar() {
                            <div className="flex items-center gap-4">
                                <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse" />
                                <div>
-                                   <h2 className="font-pixel text-2xl md:text-4xl text-primary text-shadow-pixel tracking-tighter">GAME PAUSED</h2>
+                                   <h2 className="font-pixel text-2xl md:text-4xl text-primary text-shadow-pixel tracking-tighter">MAIN MENU</h2>
                                    <p className="font-mono text-xs md:text-sm opacity-70 mt-2">&gt; SELECT DESTINATION...</p>
                                </div>
                            </div>

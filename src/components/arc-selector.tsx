@@ -9,9 +9,9 @@ interface ArcSelectorProps {
 }
 
 const arcs = [
-  { id: 0, title: "ARC 0: FOUNDING ARC", status: "UNLOCKED", desc: "The Origin Story" },
-  { id: 1, title: "ARC 1: AWAKENING", status: "LOCKED", desc: "The Expansion" },
-  { id: 2, title: "ARC 2: ASCENSION", status: "LOCKED", desc: "Future Content" },
+  { id: 0, title: "ARC-0: FOUNDING ARC", status: "UNLOCKED", desc: "The Origin Story" },
+  { id: 1, title: "ARC-1: AWAKENING", status: "UNLOCKED", desc: "The Expansion" },
+  { id: 2, title: "ARC-2: ASCENSION", status: "LOCKED", desc: "Future Content" },
 ];
 
 export function ArcSelector({ selectedArc, onSelectArc }: ArcSelectorProps) {

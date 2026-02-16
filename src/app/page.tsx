@@ -22,9 +22,20 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 100 }}
             className="text-4xl md:text-7xl font-pixel leading-tight text-shadow-pixel pt-10"
           >
-            PLAYER 1:<br/>
-            <span className="text-primary animate-flicker block mt-2">I-WILL LAB</span>
+            <span className="text-primary animate-flicker block mt-2">I-WILL</span>
+            <span className="text-secondary text-sm md:text-xl font-mono tracking-widest block mt-4 border-b-2 border-dashed border-primary/50 pb-4 mb-4">
+              Innovative Workingspace Integrated Living Laboratory
+            </span>
           </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="font-mono text-md text-muted-foreground max-w-3xl mx-auto leading-relaxed text-justify md:text-center"
+          >
+            &quot;I-WILL is more than just a workspace; it is a passionate community of like-minded individuals committed to personal and professional growth. We believe that by bringing together diverse talents and perspectives, we can spark creativity and drive meaningful change. We are proud to support a community of hardworking and innovative individuals. At I-WILL, we recognize that our greatest asset is our people. We strive to provide the resources, support, and inspiration needed for each member to excel in their endeavors.&quot;
+          </motion.p>
           
           <motion.div 
             initial={{ y: 20, opacity: 0 }}

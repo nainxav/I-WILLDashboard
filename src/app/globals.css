@@ -62,13 +62,14 @@
   animation: float 3s ease-in-out infinite;
 }
 
-.bg-grid-animate {
+/* nonaktif soalnya kalo diaktifin bikin lag di cpu 4 core :"( */
+/* .bg-grid-animate {
   background-size: 40px 40px;
   background-image: 
     linear-gradient(to right, rgba(128, 128, 128, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(128, 128, 128, 0.1) 1px, transparent 1px);
   animation: grid-move 2s linear infinite;
-}
+} */
 
 @layer base {
   * {

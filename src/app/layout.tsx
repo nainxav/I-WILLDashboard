@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Press_Start_2P, VT323 } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { PixelNavbar } from "@/components/pixel-navbar";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import "./globals.css";
 
 const pressStart2P = Press_Start_2P({
@@ -39,6 +40,7 @@ export default function RootLayout({
           <div className="pt-20">
             {children}
           </div>
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>

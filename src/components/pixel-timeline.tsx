@@ -9,6 +9,7 @@ import { PixelCard } from "./pixel-card";
 const events = [
   {
     id: 1,
+    arc: 0,
     year: "2023",
     title: "EDUCATION DAY EXHIBITION",
     desc: "Showcasing our first prototype at the National Education Day event.",
@@ -16,6 +17,7 @@ const events = [
   },
   {
     id: 2,
+    arc: 0,
     year: "2023",
     title: "IoT SHOWCASE",
     desc: "Demonstrating smart home integration and IoT capabilities.",
@@ -23,6 +25,7 @@ const events = [
   },
   {
     id: 3,
+    arc: 0,
     year: "2023",
     title: "INTERNATIONAL DELEGATION",
     desc: "Hosting a visit from the Pakistan delegation for research collaboration.",
@@ -30,6 +33,7 @@ const events = [
   },
   {
     id: 4,
+    arc: 0,
     year: "2024",
     title: "ORMAWA COMPETITION",
     desc: "Winning the prestigious Student Organization competition.",
@@ -37,6 +41,7 @@ const events = [
   },
   {
     id: 5,
+    arc: 0,
     year: "2024",
     title: "TEAM CELEBRATION",
     desc: "Celebrating our milestones in Malang. Moral boosted!",
@@ -44,6 +49,7 @@ const events = [
   },
   {
     id: 6,
+    arc: 1,
     year: "2024",
     title: "OPEN HOUSE",
     desc: "Opening our lab doors to new recruits and curious minds.",
@@ -59,7 +65,9 @@ export function PixelTimeline({ selectedArc }: { selectedArc: number }) {
   });
 
   // CONTENT LOGIC
-  if (selectedArc !== 0) {
+  const arcEvents = events.filter((event) => event.arc === selectedArc);
+  
+  if (arcEvents.length === 0) {
       return (
           <div className="h-screen w-full flex items-center justify-center bg-black relative overflow-hidden">
                <div className="text-center space-y-6 relative z-10 px-6">
@@ -86,34 +94,31 @@ export function PixelTimeline({ selectedArc }: { selectedArc: number }) {
       )
   }
 
-  // ARC 0 CONTENT (Genesis)
+  // RENDER SELECTED ARC CONTENT
   return (
     <div ref={containerRef} className="relative">
-      {/* Intro Section: ARC 0 */}
-      <IntroSection />
+      {/* Intro Section: DYNAMIC TITLE */}
+      <IntroSection title={`ARC-${selectedArc}`} />
 
-      {events.map((event, index) => (
+      {arcEvents.map((event, index) => (
         <TimelineSection 
             key={event.id} 
             event={event} 
             index={index} 
-            total={events.length} 
+            total={arcEvents.length} 
             progress={scrollYProgress} 
         />
       ))}
-      
-      {/* Glowing Vertical Line (Persistent) */}
-      <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-primary/50 shadow-[0_0_15px_var(--primary)] z-20 hidden md:block" />
     </div>
   );
 }
 
-function IntroSection() {
+function IntroSection({ title }: { title: string }) {
     return (
-        <div className="h-screen sticky top-0 flex items-center justify-center overflow-hidden bg-black/90 z-10">
+        <div className="h-screen sticky top-0 flex items-center justify-center overflow-hidden bg-background/90 z-10">
             {/* Background Effects */}
-            <div className="absolute inset-0 bg-[url('/images/1_pameran_hardiknas.jpg')] bg-cover bg-center opacity-20 blur-sm" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+            <div className="absolute inset-0 bg-[url('/images/logo-lightMode.png')] bg-cover bg-center opacity-20 blur-sm" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
 
             <div className="relative z-10 text-center space-y-6 max-w-4xl px-6">
                 <motion.h2 
@@ -122,7 +127,7 @@ function IntroSection() {
                     transition={{ duration: 1 }}
                     className="font-pixel text-5xl md:text-8xl text-primary text-shadow-pixel blink"
                 >
-                    ARC 0
+                    {title}
                 </motion.h2>
                 
                 <motion.div
@@ -131,12 +136,14 @@ function IntroSection() {
                     transition={{ duration: 1, delay: 0.5 }}
                     className="space-y-4"
                 >
-                    <p className="font-pixel text-2xl md:text-4xl text-white/90 leading-relaxed drop-shadow-md">
+                    <p className="font-pixel text-2xl md:text-4xl text-foreground/90 leading-relaxed drop-shadow-md">
                         &quot;Year 2023...&quot;
                     </p>
-                    <p className="font-mono text-xl md:text-2xl text-gray-400 italic">
+                     
+                    <p className="font-mono text-xl md:text-2xl text-muted-foreground italic">
                         In a small laboratory room, a vision was born.
                     </p>
+                    
                     <p className="font-mono text-sm text-primary/80 mt-8">
                         SCROLL TO INITIALIZE HISTORY REWIND &gt;&gt;&gt;
                     </p>
@@ -170,9 +177,9 @@ function TimelineSection({ event, index, total, progress }: any) {
                 className="object-cover"
                 priority={index === 0}
             />
-            {/* Dark Overlay for Text Readability & Blue Tint for Codex Feel */}
-            <div className="absolute inset-0 bg-blue-900/30 mix-blend-multiply" />
-            <div className="absolute inset-0 bg-black/60" />
+            {/* Theme-aware Overlay: Darker in dark mode, lighter in light mode but ensuring text contrast */}
+            <div className="absolute inset-0 bg-background/30 dark:bg-black/60 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-background/60 dark:bg-black/60" />
             
             {/* Retro Scanline Overlay */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none opacity-50" />
@@ -187,17 +194,17 @@ function TimelineSection({ event, index, total, progress }: any) {
         transition={{ duration: 0.5, delay: 0.2 }}
         viewport={{ once: false, amount: 0.5 }}
       >
-        <PixelCard className="bg-black/80 backdrop-blur-md border-primary shadow-[0_0_20px_rgba(var(--primary),0.3)]">
+        <PixelCard className="bg-background/80 dark:bg-black/80 backdrop-blur-md border-primary shadow-[0_0_20px_rgba(var(--primary),0.3)]">
            <div className="flex items-center gap-4 mb-4 border-b-2 border-dashed border-primary/50 pb-2">
                <span className="font-pixel text-primary text-xl text-shadow-sm">LOG_0{index + 1}</span>
-               <span className="font-mono text-sm opacity-50 ml-auto">{event.year}</span>
+               <span className="font-mono text-sm opacity-50 ml-auto text-foreground">{event.year}</span>
            </div>
            
-           <h3 className="font-pixel text-2xl md:text-4xl mb-4 leading-tight text-white">
+           <h3 className="font-pixel text-2xl md:text-4xl mb-4 leading-tight text-foreground">
                {event.title}
            </h3>
            
-           <p className="font-mono text-lg md:text-xl text-gray-300">
+           <p className="font-mono text-lg md:text-xl text-muted-foreground">
                {event.desc}
            </p>
 
