@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { PixelCard } from "./pixel-card";
+import { FoundersSection } from "./founders-section";
+import { DepartmentsSection } from "./departments-section";
 
 // Data events matching the files
 const events = [
@@ -99,6 +101,14 @@ export function PixelTimeline({ selectedArc }: { selectedArc: number }) {
     <div ref={containerRef} className="relative">
       {/* Intro Section: DYNAMIC TITLE */}
       <IntroSection title={`ARC-${selectedArc}`} />
+
+      {/* ARC-0 SPECIFIC SECTIONS */}
+      {selectedArc === 0 && (
+        <>
+            <FoundersSection />
+            {/* <DepartmentsSection /> */}
+        </>
+      )}
 
       {arcEvents.map((event, index) => (
         <TimelineSection 
