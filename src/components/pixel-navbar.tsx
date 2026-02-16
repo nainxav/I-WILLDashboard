@@ -41,7 +41,7 @@ export function PixelNavbar() {
             >
                 {isOpen ? <Play size={20} fill="currentColor" /> : <Pause size={20} fill="currentColor" />}
                 <span className="font-pixel text-xs md:text-sm tracking-widest">
-                    {isOpen ? "RESUME" : "PAUSE"}
+                    {isOpen ? "Menu" : "Menu"}
                 </span>
             </motion.button>
         </header>
