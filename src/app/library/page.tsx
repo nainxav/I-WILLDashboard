@@ -9,6 +9,9 @@ import { teams } from "@/data/teams";
 import { Search, Filter, SortAsc, SortDesc, Download, FileText, File, FileSpreadsheet, FileBox } from "lucide-react";
 import { clsx } from "clsx";
 
+import { PixelPageHeader } from "@/components/pixel-page-header";
+import { PixelControlBar } from "@/components/pixel-control-bar";
+
 export default function LibraryPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTeam, setSelectedTeam] = useState<string>("ALL");
@@ -19,14 +22,13 @@ export default function LibraryPage() {
 
   // Filter and Sort Logic
   const filteredDocs = useMemo(() => {
+    // ... existing logic ...
     let docs = [...documents];
 
-    // 1. Filter by Team
     if (selectedTeam !== "ALL") {
       docs = docs.filter((doc) => doc.teamSlug === selectedTeam);
     }
 
-    // 2. Filter by Search
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       docs = docs.filter((doc) => 
@@ -35,16 +37,6 @@ export default function LibraryPage() {
       );
     }
 
-    // 3. Sort
-    docs.sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === "asc" ? -1 : 1;
-      }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
 
     return docs;
   }, [searchQuery, selectedTeam, sortConfig]);
@@ -57,72 +49,32 @@ export default function LibraryPage() {
     }));
   };
 
+  const teamOptions = [
+    { label: "ALL TEAMS", value: "ALL" },
+    ...teams.map(team => ({ label: team.name.toUpperCase(), value: team.slug })),
+    { label: "GENERAL", value: "general" }
+  ];
+
   return (
     <main className="min-h-screen bg-background text-foreground font-mono p-6 relative">
       <GridBackground />
       
       <div className="max-w-7xl mx-auto relative z-10 space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-4 pt-8">
-            <h1 className="font-pixel text-4xl md:text-6xl text-primary text-shadow-pixel">ARCHIVES</h1>
-            <p className="text-xl opacity-80">&gt; SECURE DOCUMENT REPOSITORY &lt;</p>
-        </div>
+        
+        <PixelPageHeader 
+            title="ARCHIVES" 
+            subtitle="SECURE DOCUMENT REPOSITORY" 
+        />
 
-        {/* Control Bar */}
-        <div className="bg-background/80 backdrop-blur-md border-4 border-black dark:border-white p-4 md:p-6 shadow-pixel sticky top-24 z-20">
-            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-                
-                {/* Search */}
-                <div className="relative w-full md:w-1/3">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
-                    <input 
-                        type="text" 
-                        placeholder="SEARCH DOCUMENTS..." 
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-transparent border-2 border-gray-400 dark:border-gray-600 pl-10 pr-4 py-2 font-pixel text-sm focus:border-primary focus:outline-none transition-colors"
-                    />
-                </div>
-
-                {/* Filters */}
-                <div className="flex flex-wrap gap-4 w-full md:w-auto items-center">
-                    {/* Team Filter */}
-                    <div className="flex items-center gap-2">
-                        <Filter size={18} className="text-primary" />
-                        <select 
-                            value={selectedTeam}
-                            onChange={(e) => setSelectedTeam(e.target.value)}
-                            className="bg-transparent border-2 border-gray-400 dark:border-gray-600 px-4 py-2 font-pixel text-xs md:text-sm focus:border-primary focus:outline-none cursor-pointer"
-                        >
-                            <option value="ALL">ALL TEAMS</option>
-                            {teams.map(team => (
-                                <option key={team.slug} value={team.slug}>{team.name.toUpperCase()}</option>
-                            ))}
-                            <option value="general">GENERAL</option>
-                        </select>
-                    </div>
-
-                    {/* Sort Buttons */}
-                    <div className="flex items-center gap-2 border-l-2 border-dashed border-gray-400 pl-4">
-                        <span className="font-pixel text-xs hidden md:inline">SORT:</span>
-                        <button 
-                            onClick={() => handleSort("date")}
-                            className={clsx("px-3 py-1 border-2 text-xs font-pixel transition-colors flex items-center gap-2", sortConfig.key === "date" ? "bg-primary text-primary-foreground border-primary" : "border-gray-400 hover:border-primary")}
-                        >
-                            DATE
-                            {sortConfig.key === "date" && (sortConfig.direction === "asc" ? <SortAsc size={14}/> : <SortDesc size={14}/>)}
-                        </button>
-                        <button 
-                            onClick={() => handleSort("title")}
-                            className={clsx("px-3 py-1 border-2 text-xs font-pixel transition-colors flex items-center gap-2", sortConfig.key === "title" ? "bg-primary text-primary-foreground border-primary" : "border-gray-400 hover:border-primary")}
-                        >
-                            NAME
-                            {sortConfig.key === "title" && (sortConfig.direction === "asc" ? <SortAsc size={14}/> : <SortDesc size={14}/>)}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <PixelControlBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            searchPlaceholder="SEARCH DOCUMENTS..."
+            filterValue={selectedTeam}
+            setFilterValue={setSelectedTeam}
+            filterOptions={teamOptions}
+        >
+        </PixelControlBar>
 
         {/* Results Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
