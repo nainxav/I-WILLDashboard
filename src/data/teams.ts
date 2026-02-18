@@ -44,7 +44,7 @@ export const teams: Team[] = [
             {
                 slug: "shafira",
                 name: "Shafira Kurnia Fasya",
-                photo: "/members/shafira.png",
+                photo: "/members/shafira.JPG",
                 role: "Team Leader",
                 status: "ACTIVE",
                 email: "shafirakf@gmail.com",
@@ -143,7 +143,7 @@ export const teams: Team[] = [
             {
                 slug: "farhan",
                 name: "Farhan Kamil",
-                photo: "/members/farhan.png",
+                photo: "/members/farhan.jpg",
                 role: "Member",
                 status: "ACTIVE",
                 email: "farhan.kamil@iwill-lab.com",
@@ -214,7 +214,7 @@ export const teams: Team[] = [
             {
                 slug: "deden",
                 name: "Deden Roga",
-                photo: "/members/deden.png",
+                photo: "/members/deden.jpg",
                 role: "Team Leader",
                 status: "ACTIVE",
                 email: "deden.roga@iwill-lab.com",
@@ -407,7 +407,7 @@ export const teams: Team[] = [
             {
                 slug: "hickham",
                 name: "Hickham Amwala K",
-                photo: "/members/hickham.png",
+                photo: "/members/hickham.jpg",
                 role: "Member",
                 status: "ACTIVE",
                 email: "hickham@iwill-lab.com",
@@ -456,7 +456,7 @@ export const teams: Team[] = [
             {
                 slug: "ari",
                 name: "Ari Ferdiana",
-                photo: "/members/ari.png",
+                photo: "/members/ari.jpg",
                 role: "Team Leader",
                 status: "ACTIVE",
                 email: "ari.ferdiana@iwill-lab.com",
@@ -494,7 +494,7 @@ export const teams: Team[] = [
             {
                 slug: "lingga",
                 name: "M. Lingga Darmawan",
-                photo: "/members/lingga.png",
+                photo: "/members/lingga.jpg",
                 role: "Member",
                 status: "ACTIVE",
                 email: "lingga@iwill-lab.com",
@@ -660,7 +660,7 @@ export const teams: Team[] = [
             {
                 slug: "angeline",
                 name: "Angeline",
-                photo: "/members/angeline.png",
+                photo: "/members/angel.png",
                 role: "Member",
                 status: "ACTIVE",
                 email: "angeline@iwill-lab.com",
@@ -679,7 +679,7 @@ export const teams: Team[] = [
             {
                 slug: "shafira-aprillia",
                 name: "Shafira Aprillia",
-                photo: "/members/shafira-aprillia.png",
+                photo: "/members/shafira_aprilia.jpg",
                 role: "Member",
                 status: "ACTIVE",
                 email: "shafira.aprillia@iwill-lab.com",
@@ -728,7 +728,7 @@ export const teams: Team[] = [
             {
                 slug: "luthfiandi",
                 name: "Luthfiandi Rizki Kurnia",
-                photo: "/members/luthfiandi.png",
+                photo: "/members/luthfi.png",
                 role: "Member",
                 status: "ACTIVE",
                 email: "luthfiandi@iwill-lab.com",
@@ -747,7 +747,7 @@ export const teams: Team[] = [
             {
                 slug: "rizky",
                 name: "Muhammad Rizky",
-                photo: "/members/rizky.png",
+                photo: "/members/rizky.jpg",
                 role: "Member",
                 status: "ACTIVE",
                 email: "rizky@iwill-lab.com",
@@ -766,7 +766,7 @@ export const teams: Team[] = [
             {
                 slug: "nizar",
                 name: "Nizar Abdul Malik",
-                photo: "/members/nizar.png",
+                photo: "/members/nizar.jpg",
                 role: "Member",
                 status: "ACTIVE",
                 email: "nizar@iwill-lab.com",

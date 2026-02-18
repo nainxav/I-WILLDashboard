@@ -10,28 +10,28 @@ const founders = [
     name: "Dr. sc. Lisa Kristiana, S.T., M.T.",
     role: "Founder",
     desc: "Strategizing the future of the lab.",
-    image: "/images/logo-lightMode.png", // Placeholder
+    image: "/members/bulisa.jpg",
   },
   {
     id: 2,
     name: "Ir. Muhammad Ichwan M.T.",
     role: "Co-Founder",
     desc: "Building the digital foundation.",
-    image: "/images/logo-lightMode.png", // Placeholder
+    image: "/members/pakichwan.jpg",
   },
   {
     id: 3,
     name: "Galih ashari rakhmat S.Si., M.T.",
     role: "Co-Founder",
     desc: "Ensuring smooth daily operations.",
-    image: "/images/logo-lightMode.png", // Placeholder
+    image: "/members/pak_galih.jpg",
   },
   {
     id: 4,
     name: "Zaelani Mursid",
     role: "Co-Founder",
     desc: "Designing the visual identity.",
-    image: "/images/logo-lightMode.png", // Placeholder
+    image: "/members/pakzae.jpg",
   },
 ];
 
