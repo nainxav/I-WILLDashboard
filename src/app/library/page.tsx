@@ -11,7 +11,7 @@ export default function CodexPage() {
       
       <div className="max-w-6xl mx-auto relative z-10 space-y-12">
         <div className="text-center space-y-4">
-            <h1 className="font-pixel text-4xl md:text-6xl text-primary text-shadow-pixel">THE CODEX</h1>
+            <h1 className="font-pixel text-4xl md:text-6xl text-primary text-shadow-pixel">LIBRARY</h1>
             <p className="text-xl opacity-80">&gt; DATABASE: UNCLASSIFIED &lt;</p>
         </div>
 

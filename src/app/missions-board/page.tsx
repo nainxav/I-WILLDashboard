@@ -13,7 +13,7 @@ export default function ConstructsPage() {
       
       <div className="max-w-6xl mx-auto relative z-10 space-y-12">
         <div className="text-center space-y-4">
-            <h1 className="font-pixel text-4xl md:text-6xl text-primary text-shadow-pixel">CONSTRUCTS</h1>
+            <h1 className="font-pixel text-4xl md:text-6xl text-primary text-shadow-pixel">Missions Board</h1>
             <p className="text-xl opacity-80">&gt; QUEST BOARD: ACTIVE MISSIONS &lt;</p>
         </div>
 

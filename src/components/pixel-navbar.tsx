@@ -6,13 +6,13 @@ import { clsx } from "clsx";
 import { ModeToggle } from "@/components/theme-toggle";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { House, BookOpen, Gamepad2, Cpu, Trophy, Radio, Pause, Play } from "lucide-react";
+import { House, BookOpen, Cpu, Trophy, Radio, Pause, Play, Calendar } from "lucide-react";
 import Image from "next/image";
 
 const navItems = [
   { name: "BASE", href: "/", label: "Base Operations", icon: House, desc: "Return to HQ" },
-  { name: "CODEX", href: "/codex", label: "The Codex", icon: BookOpen, desc: "Lab Data & Stats" },
-  { name: "CONSTRUCTS", href: "/constructs", label: "Constructs", icon: Gamepad2, desc: "Active Projects" },
+  { name: "CODEX", href: "/library", label: "Library", icon: BookOpen, desc: "Lab Data & Stats" },
+  { name: "CONSTRUCTS", href: "/missions-board", label: "Missions Board", icon: Calendar, desc: "Active Projects" },
   { name: "ARSENAL", href: "/arsenal", label: "Arsenal", icon: Cpu, desc: "Tech Stack" },
   { name: "HALL OF HONOR", href: "/hall-of-honor", label: "Hall of Honor", icon: Trophy, desc: "Achievements" },
   { name: "TRANSMISSION", href: "/transmission", label: "Transmission", icon: Radio, desc: "Comms Link" },
