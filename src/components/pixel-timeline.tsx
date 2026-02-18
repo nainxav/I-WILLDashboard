@@ -12,7 +12,7 @@ const events = [
   {
     id: 1,
     arc: 0,
-    year: "2023",
+    year: "2024",
     title: "EDUCATION DAY EXHIBITION",
     desc: "Showcasing our first prototype at the National Education Day event.",
     image: "/images/1_pameran_hardiknas.jpg",
@@ -20,7 +20,7 @@ const events = [
   {
     id: 2,
     arc: 0,
-    year: "2023",
+    year: "2024",
     title: "IoT SHOWCASE",
     desc: "Demonstrating smart home integration and IoT capabilities.",
     image: "/images/2_pameran_IoT.JPG",
@@ -28,7 +28,7 @@ const events = [
   {
     id: 3,
     arc: 0,
-    year: "2023",
+    year: "2024",
     title: "INTERNATIONAL DELEGATION",
     desc: "Hosting a visit from the Pakistan delegation for research collaboration.",
     image: "/images/3_kunjungan_pakistan.png",
@@ -147,7 +147,7 @@ function IntroSection({ title }: { title: string }) {
                     className="space-y-4"
                 >
                     <p className="font-pixel text-2xl md:text-4xl text-foreground/90 leading-relaxed drop-shadow-md">
-                        &quot;Year 2023...&quot;
+                        &quot;Year 2024...&quot;
                     </p>
                      
                     <p className="font-mono text-xl md:text-2xl text-muted-foreground italic">
