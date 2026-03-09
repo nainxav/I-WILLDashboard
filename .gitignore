@@ -1,3 +1,5 @@
+src/cv/
+
 # Dependencies
 node_modules/
 .pnp/
