@@ -105,6 +105,7 @@ export const teams: Team[] = [
                     { name: "Arduino/ESP32", level: 78 },
                     { name: "IoT Systems", level: 75 },
                     { name: "Drone Technology", level: 72 },
+                    { name: "Backend Development", level: 90 },
                 ],
                 projects: [
                     { name: "Drone Astra Versa", description: "IoT drone system for surveillance applications", tech: ["Python", "IoT", "Sensors"] },
@@ -115,8 +116,8 @@ export const teams: Team[] = [
             {
                 slug: "zakhwa",
                 name: "Zakhwa Aliya Maryam",
-                photo: "/members/zakhwa.png",
-                role: "UI/UX & 3D Designer",
+                photo: "public/members/zakhwa.png",
+                role: "Drone Researcher & 3D Designer",
                 status: "ACTIVE",
                 email: "zakhwa.aliya@mhs.itenas.ac.id",
                 phone: "+62 813 4567 8901",
@@ -129,13 +130,7 @@ export const teams: Team[] = [
                     { degree: "High School (Science)", institution: "SMA Negeri 1 Baleendah", year: "2022 - 2024", gpa: "" },
                 ],
                 experience: [
-                    { title: "UI/UX & 3D Designer", company: "I-WILL Laboratory", period: "2024 - Present", description: "Merancang antarmuka pengguna (UI/UX) dan desain mekanik 3D Drone Astra Versa." },
-                    {
-                        title: "Member - Komunitas Remaja Berbasis IT (KARBIT)",
-                        company: "SMA Negeri 1 Baleendah",
-                        period: "2022",
-                        description: "Menjadi anggota divisi Pemrograman dan berkontribusi dalam kegiatan komunitas IT remaja."
-                    },
+                    { title: "Drone Researcher & 3D Designer", company: "I-WILL Laboratory", period: "2024 - Present", description: "Tim peneliti untuk Drone Astra Versa dan desain mekanik 3D Drone Astra Versa." },
                     {
                         title: "Participant - Bootcamp Codespace (UI/UX Division)",
                         company: "Codespace",
@@ -148,21 +143,21 @@ export const teams: Team[] = [
                         period: "2024",
                         description: "Mengikuti bootcamp cloud dan teknologi Google."
                     },
-                    {
-                        title: "Participant - Figma Bootcamp",
-                        company: "@figmacamp.id",
-                        period: "2025 - Present",
-                        description: "Mengasah kemampuan desain antarmuka menggunakan Figma."
+                    { 
+                        title: "Best Innovators - ICSIT 2025",
+                        company: "-",
+                        period: "2025",
+                        description: "Mengikuti kompetisi riset pengembangan pembaharuan teknologi tingkat internasional dengan fokus pada AI dan IoT."
                     }
                 ],
                 skills: [
-                    { name: "Robotics Fundamentals", level: 80 },
+                    { name: "Robotics Fundamentals", level: 79 },
                     { name: "Basic Programming", level: 78 },
-                    { name: "UI/UX Design (Figma / Canva)", level: 78 },
+                    { name: "UI/UX Design (Figma)", level: 85 },
                 ],
                 projects: [],
                 achievements: [ "Drone Astra Versa Team Member" ],
-                social: { github: "https://github.com/zakhwa", linkedin: "https://linkedin.com/in/zakhwa" },
+                social: { github: "https://github.com/cheese-voyager", linkedin: "https://linkedin.com/in/zakhwa" },
             },
             {
                 slug: "farhan",
